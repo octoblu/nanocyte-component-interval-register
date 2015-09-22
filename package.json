@@ -2,7 +2,11 @@
   "name": "nanocyte-component-interval-start",
   "version": "1.0.0",
   "description": "Nanocyte component interval-start",
-  "keywords": ["nanocyte", "octoblu", "meshblu"],
+  "keywords": [
+    "nanocyte",
+    "octoblu",
+    "meshblu"
+  ],
   "homepage": "https://github.com/octoblu/nanocyte-component-interval-start",
   "bugs": "https://github.com/octoblu/nanocyte-component-interval-start/issues",
   "author": {
@@ -29,11 +33,10 @@
     "istanbul": "^0.3.20",
     "mocha": "^2.3.3",
     "mocha-istanbul": "^0.2.0",
-    "sinon": "^1.16.1",
+    "sinon": "^1.17.0",
     "sinon-chai": "^2.8.0"
   },
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "engines": {
     "node": ">=0.10.0",
     "npm": ">=2.0.0"
