@@ -10,5 +10,35 @@ describe 'IntervalStart', ->
 
   describe '->onEnvelope', ->
     describe 'when called with an envelope', ->
-      it 'should return the message', ->
-        expect(@sut.onEnvelope({message: 'anything'})).to.deep.equal 'anything'
+      beforeEach ->
+        @result = @sut.onEnvelope
+          message: 'whaaa?'
+          config:
+            repeat: 1000
+            nodeId: 'the-node-uuid'
+            deviceId: 'some-hardcoded-uuid'
+
+      it 'should return a message', ->
+        expect(@result).to.deep.equal
+          devices: ['some-hardcoded-uuid']
+          topic: 'register'
+          payload:
+            repeat: 1000
+            nodeId: 'the-node-uuid'
+
+    describe 'when called with an envelope, the envelope strikes back', ->
+      beforeEach ->
+        @result = @sut.onEnvelope
+          message: '¿huuuuh!?'
+          config:
+            repeat: 1001
+            nodeId: 'the-edon-uuid'
+            deviceId: 'some-softcoded-uuid'
+
+      it 'should return a message', ->
+        expect(@result).to.deep.equal
+          devices: ['some-softcoded-uuid']
+          topic: 'register'
+          payload:
+            repeat: 1001
+            nodeId: 'the-edon-uuid'
