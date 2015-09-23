@@ -8,6 +8,6 @@ class IntervalStart extends ReturnValue
     topic: 'register'
     payload:
       repeat: config.repeat
-      nodeId: config.nodeId
+      nodeId: config.id
 
 module.exports = IntervalStart

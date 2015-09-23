@@ -15,7 +15,7 @@ describe 'IntervalStart', ->
           message: 'whaaa?'
           config:
             repeat: 1000
-            nodeId: 'the-node-uuid'
+            id: 'the-node-uuid'
             deviceId: 'some-hardcoded-uuid'
 
       it 'should return a message', ->
@@ -32,7 +32,7 @@ describe 'IntervalStart', ->
           message: '¿huuuuh!?'
           config:
             repeat: 1001
-            nodeId: 'the-edon-uuid'
+            id: 'the-edon-uuid'
             deviceId: 'some-softcoded-uuid'
 
       it 'should return a message', ->
