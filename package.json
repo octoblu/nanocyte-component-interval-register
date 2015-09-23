@@ -1,14 +1,14 @@
 {
-  "name": "nanocyte-component-interval-start",
+  "name": "nanocyte-component-interval-register",
   "version": "1.0.1",
-  "description": "Nanocyte component interval-start",
+  "description": "Nanocyte component interval-register",
   "keywords": [
     "nanocyte",
     "octoblu",
     "meshblu"
   ],
-  "homepage": "https://github.com/octoblu/nanocyte-component-interval-start",
-  "bugs": "https://github.com/octoblu/nanocyte-component-interval-start/issues",
+  "homepage": "https://github.com/octoblu/nanocyte-component-interval-register",
+  "bugs": "https://github.com/octoblu/nanocyte-component-interval-register/issues",
   "author": {
     "name": "Octoblu",
     "url": "https://github.com/octoblu"
@@ -16,7 +16,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/octoblu/nanocyte-component-interval-start.git"
+    "url": "https://github.com/octoblu/nanocyte-component-interval-register.git"
   },
   "scripts": {
     "test": "istanbul cover _mocha -- -R spec"
