@@ -5,9 +5,9 @@ class IntervalStart extends ReturnValue
     {config} = envelope
 
     devices: [config.deviceId]
-    topic: 'register'
+    topic: 'register-interval'
     payload:
-      repeat: config.repeat
+      intervalTime: config.repeat
       nodeId: config.id
 
 module.exports = IntervalStart

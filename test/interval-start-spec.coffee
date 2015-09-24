@@ -21,9 +21,9 @@ describe 'IntervalStart', ->
       it 'should return a message', ->
         expect(@result).to.deep.equal
           devices: ['some-hardcoded-uuid']
-          topic: 'register'
+          topic: 'register-interval'
           payload:
-            repeat: 1000
+            intervalTime: 1000
             nodeId: 'the-node-uuid'
 
     describe 'when called with an envelope, the envelope strikes back', ->
@@ -38,7 +38,7 @@ describe 'IntervalStart', ->
       it 'should return a message', ->
         expect(@result).to.deep.equal
           devices: ['some-softcoded-uuid']
-          topic: 'register'
+          topic: 'register-interval'
           payload:
-            repeat: 1001
+            intervalTime: 1001
             nodeId: 'the-edon-uuid'
