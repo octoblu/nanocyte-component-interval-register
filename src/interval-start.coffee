@@ -7,7 +7,8 @@ class IntervalStart extends ReturnValue
     devices: [config.deviceId]
     topic: 'register-interval'
     payload:
-      intervalTime: config.repeat
+      intervalTime: config.repeat ? config.timeout
+      fireOnce: config.timeout?
       nodeId: config.id
       nonce: config.nanocyte?.nonce
 
