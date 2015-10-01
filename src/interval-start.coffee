@@ -16,9 +16,9 @@ class IntervalStart extends ReturnValue
       nonce: config.nanocyte?.nonce
 
   multiplier: (units) =>
-    return 60 if units == 'seconds'
-    return 60*60 if units == 'minutes'
-    return 60*60*60 if units == 'hours'
+    return 1000 if units == 'seconds'
+    return 1000*60 if units == 'minutes'
+    return 1000*60*60 if units == 'hours'
     return 1
 
 module.exports = IntervalStart

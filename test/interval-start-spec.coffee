@@ -92,7 +92,7 @@ describe 'IntervalStart', ->
             devices: ['some-hardcoded-uuid']
             topic: 'register-interval'
             payload:
-              intervalTime: 2397600
+              intervalTime: 39960000
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
@@ -114,7 +114,7 @@ describe 'IntervalStart', ->
             devices: ['some-hardcoded-uuid']
             topic: 'register-interval'
             payload:
-              intervalTime: 39960
+              intervalTime: 666000
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
@@ -136,7 +136,7 @@ describe 'IntervalStart', ->
             devices: ['some-hardcoded-uuid']
             topic: 'register-interval'
             payload:
-              intervalTime: 143856000
+              intervalTime: 2397600000
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
