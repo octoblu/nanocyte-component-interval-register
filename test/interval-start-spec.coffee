@@ -73,3 +73,92 @@ describe 'IntervalStart', ->
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
+
+    describe 'with timeout and timeoutUnits', ->
+      describe 'when called with an envelope', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'whaaa?'
+            config:
+              timeout: 666
+              timeoutUnits: 'minutes'
+              id: 'the-node-uuid'
+              deviceId: 'some-hardcoded-uuid'
+              nanocyte:
+                nonce: 'scalding-whistle'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: 2397600
+              fireOnce: true
+              nodeId: 'the-node-uuid'
+              nonce: 'scalding-whistle'
+
+      describe 'when called with seconds', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'whaaa?'
+            config:
+              timeout: 666
+              timeoutUnits: 'seconds'
+              id: 'the-node-uuid'
+              deviceId: 'some-hardcoded-uuid'
+              nanocyte:
+                nonce: 'scalding-whistle'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: 39960
+              fireOnce: true
+              nodeId: 'the-node-uuid'
+              nonce: 'scalding-whistle'
+
+      describe 'when called with hours', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'whaaa?'
+            config:
+              timeout: 666
+              timeoutUnits: 'hours'
+              id: 'the-node-uuid'
+              deviceId: 'some-hardcoded-uuid'
+              nanocyte:
+                nonce: 'scalding-whistle'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: 143856000
+              fireOnce: true
+              nodeId: 'the-node-uuid'
+              nonce: 'scalding-whistle'
+
+      describe 'when called with milliseconds', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'whaaa?'
+            config:
+              timeout: 666
+              timeoutUnits: 'milliseconds'
+              id: 'the-node-uuid'
+              deviceId: 'some-hardcoded-uuid'
+              nanocyte:
+                nonce: 'scalding-whistle'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: 666
+              fireOnce: true
+              nodeId: 'the-node-uuid'
+              nonce: 'scalding-whistle'
