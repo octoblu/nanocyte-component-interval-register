@@ -17,6 +17,8 @@ describe 'IntervalStart', ->
             repeat: 1000
             id: 'the-node-uuid'
             deviceId: 'some-hardcoded-uuid'
+            nanocyte:
+              nonce: 'i-am-a-nonce'
 
       it 'should return a message', ->
         expect(@result).to.deep.equal
@@ -25,6 +27,7 @@ describe 'IntervalStart', ->
           payload:
             intervalTime: 1000
             nodeId: 'the-node-uuid'
+            nonce: 'i-am-a-nonce'
 
     describe 'when called with an envelope, the envelope strikes back', ->
       beforeEach ->
@@ -34,6 +37,8 @@ describe 'IntervalStart', ->
             repeat: 1001
             id: 'the-edon-uuid'
             deviceId: 'some-softcoded-uuid'
+            nanocyte:
+              nonce: 'no-noncense'
 
       it 'should return a message', ->
         expect(@result).to.deep.equal
@@ -42,3 +47,4 @@ describe 'IntervalStart', ->
           payload:
             intervalTime: 1001
             nodeId: 'the-edon-uuid'
+            nonce: 'no-noncense'

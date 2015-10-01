@@ -9,5 +9,6 @@ class IntervalStart extends ReturnValue
     payload:
       intervalTime: config.repeat
       nodeId: config.id
+      nonce: config.nanocyte?.nonce
 
 module.exports = IntervalStart
