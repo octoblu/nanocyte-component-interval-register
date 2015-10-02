@@ -12,6 +12,7 @@ class IntervalStart extends ReturnValue
     payload:
       intervalTime: intervalTime
       cronString: config.crontab
+      noUnsubscribe: config.noUnsubscribe
       fireOnce: config.timeout?
       nodeId: config.id
       nonce: config.nanocyte?.nonce
