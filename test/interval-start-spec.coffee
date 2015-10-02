@@ -31,6 +31,7 @@ describe 'IntervalStart', ->
               cronString: undefined
               nodeId: 'the-node-uuid'
               nonce: 'i-am-a-nonce'
+              noUnsubscribe: undefined
 
       describe 'when called with an envelope, the envelope strikes back', ->
         beforeEach ->
@@ -53,6 +54,7 @@ describe 'IntervalStart', ->
               cronString: undefined
               nodeId: 'the-edon-uuid'
               nonce: 'no-noncense'
+              noUnsubscribe: undefined
 
     describe 'with timeout', ->
       describe 'when called with an envelope', ->
@@ -76,6 +78,7 @@ describe 'IntervalStart', ->
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
+              noUnsubscribe: undefined
 
     describe 'with timeout and timeoutUnits', ->
       describe 'when called with an envelope', ->
@@ -100,6 +103,7 @@ describe 'IntervalStart', ->
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
+              noUnsubscribe: undefined
 
       describe 'when called with seconds', ->
         beforeEach ->
@@ -123,6 +127,7 @@ describe 'IntervalStart', ->
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
+              noUnsubscribe: undefined
 
       describe 'when called with hours', ->
         beforeEach ->
@@ -146,6 +151,7 @@ describe 'IntervalStart', ->
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
+              noUnsubscribe: undefined
 
       describe 'when called with milliseconds', ->
         beforeEach ->
@@ -169,6 +175,7 @@ describe 'IntervalStart', ->
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
+              noUnsubscribe: undefined
 
     describe 'with crontab', ->
       describe 'when called with an envelope', ->
@@ -192,6 +199,7 @@ describe 'IntervalStart', ->
               fireOnce: false
               nodeId: 'what-node-uuid'
               nonce: 'terrible-jaws'
+              noUnsubscribe: undefined
 
       describe 'when called with a different crontab', ->
         beforeEach ->
@@ -214,3 +222,53 @@ describe 'IntervalStart', ->
               fireOnce: false
               nodeId: 'fab-node-uuid'
               nonce: 'a-shrill-figment'
+              noUnsubscribe: undefined
+
+    describe 'with noUnsubscribe', ->
+      describe 'when called with an envelope', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'garblegarblegarble'
+            config:
+              crontab: 'somecrontab'
+              noUnsubscribe: true
+              id: 'what-node-uuid'
+              deviceId: 'some-weird-hardcoded-uuid'
+              nanocyte:
+                nonce: 'terrible-jaws'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-weird-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: NaN
+              cronString: 'somecrontab'
+              fireOnce: false
+              nodeId: 'what-node-uuid'
+              nonce: 'terrible-jaws'
+              noUnsubscribe: true
+
+      describe 'when called with a different crontab', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'warblewarblewarble'
+            config:
+              crontab: 'some-super-cool-crontab'
+              noUnsubscribe: true
+              id: 'fab-node-uuid'
+              deviceId: 'some-extra-weird-hardcoded-uuid'
+              nanocyte:
+                nonce: 'a-shrill-figment'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-extra-weird-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: NaN
+              cronString: 'some-super-cool-crontab'
+              fireOnce: false
+              nodeId: 'fab-node-uuid'
+              nonce: 'a-shrill-figment'
+              noUnsubscribe: true
