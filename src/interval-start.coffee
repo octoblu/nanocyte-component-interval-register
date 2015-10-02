@@ -11,6 +11,7 @@ class IntervalStart extends ReturnValue
     topic: 'register-interval'
     payload:
       intervalTime: intervalTime
+      cronString: config.crontab
       fireOnce: config.timeout?
       nodeId: config.id
       nonce: config.nanocyte?.nonce
