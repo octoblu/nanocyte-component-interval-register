@@ -28,6 +28,7 @@ describe 'IntervalStart', ->
             payload:
               fireOnce: false
               intervalTime: 1000
+              cronString: undefined
               nodeId: 'the-node-uuid'
               nonce: 'i-am-a-nonce'
 
@@ -49,6 +50,7 @@ describe 'IntervalStart', ->
             payload:
               fireOnce: false
               intervalTime: 1001
+              cronString: undefined
               nodeId: 'the-edon-uuid'
               nonce: 'no-noncense'
 
@@ -70,6 +72,7 @@ describe 'IntervalStart', ->
             topic: 'register-interval'
             payload:
               intervalTime: 666
+              cronString: undefined
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
@@ -93,6 +96,7 @@ describe 'IntervalStart', ->
             topic: 'register-interval'
             payload:
               intervalTime: 39960000
+              cronString: undefined
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
@@ -115,6 +119,7 @@ describe 'IntervalStart', ->
             topic: 'register-interval'
             payload:
               intervalTime: 666000
+              cronString: undefined
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
@@ -137,6 +142,7 @@ describe 'IntervalStart', ->
             topic: 'register-interval'
             payload:
               intervalTime: 2397600000
+              cronString: undefined
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
@@ -159,6 +165,52 @@ describe 'IntervalStart', ->
             topic: 'register-interval'
             payload:
               intervalTime: 666
+              cronString: undefined
               fireOnce: true
               nodeId: 'the-node-uuid'
               nonce: 'scalding-whistle'
+
+    describe 'with crontab', ->
+      describe 'when called with an envelope', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'garblegarblegarble'
+            config:
+              crontab: 'somecrontab'
+              id: 'what-node-uuid'
+              deviceId: 'some-weird-hardcoded-uuid'
+              nanocyte:
+                nonce: 'terrible-jaws'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-weird-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: NaN
+              cronString: 'somecrontab'
+              fireOnce: false
+              nodeId: 'what-node-uuid'
+              nonce: 'terrible-jaws'
+
+      describe 'when called with a different crontab', ->
+        beforeEach ->
+          @result = @sut.onEnvelope
+            message: 'warblewarblewarble'
+            config:
+              crontab: 'some-super-cool-crontab'
+              id: 'fab-node-uuid'
+              deviceId: 'some-extra-weird-hardcoded-uuid'
+              nanocyte:
+                nonce: 'a-shrill-figment'
+
+        it 'should return a message', ->
+          expect(@result).to.deep.equal
+            devices: ['some-extra-weird-hardcoded-uuid']
+            topic: 'register-interval'
+            payload:
+              intervalTime: NaN
+              cronString: 'some-super-cool-crontab'
+              fireOnce: false
+              nodeId: 'fab-node-uuid'
+              nonce: 'a-shrill-figment'
